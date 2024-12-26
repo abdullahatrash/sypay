@@ -3,13 +3,13 @@
 .l-header {}
 
 .l-main {
-  margin-block-start: var(--sp-l);
+  /* margin-block-start: var(--sp-l); */
 }
 
 .l-content {
-  max-inline-size: 800px;
+  /* max-inline-size: 800px;
   padding-inline: var(--sp-m);
-  margin-inline: auto;
+  margin-inline: auto; */
 }
 
 .l-footer {
