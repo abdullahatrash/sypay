@@ -32,10 +32,10 @@ const locale = Astro.currentLocale as Lang;
 
   : locale === "ar" ? (
     <link rel="preload" as="style" fetchpriority="high"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;800&display=swap"
     />
     <link rel="stylesheet" media="print" onload={`this.media='all'`}
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;800&display=swap"
     />
     <style>body{ font-family: "Noto Sans Arabic", sans-serif; }</style>
   )

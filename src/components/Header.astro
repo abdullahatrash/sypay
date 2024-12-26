@@ -16,170 +16,317 @@ const isActive = (path: string) =>
 ---
 
 <header class="l-header">
-  <h1 dir="ltr">
-    <a href={getRelativeLocaleUrl(locale, "/")}>
-      <Image src={AstroImage} alt="Astro" />
-      i18n Starter
-    </a>
-  </h1>
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">
+      <a href={getRelativeLocaleUrl(locale, "/")}>
+        <Image src={AstroImage} alt="Astro" />
+        <span>SYPAY</span>
+      </a>
+    </div>
 
-  <LocaleSelect />
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" aria-label="Toggle Menu" id="menuToggle">
+      <span class="hamburger"></span>
+    </button>
 
-  <nav class="l-content">
-    <ul>
-      <li>
-        <a
-          href={getRelativeLocaleUrl(locale, "/setup")}
-          class={isActive("/setup") ? "active" : null}
-        >
-          {t({ ja: "設定", en: "Setup", "zh-cn": "设置", ar: "إعداد" })}
-        </a>
-      </li>
+    <!-- Navigation -->
+    <div class="nav-container" id="navContainer">
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a
+              href={getRelativeLocaleUrl(locale, "/setup")}
+              class={isActive("/setup") ? "active" : null}
+            >
+              {t({ ja: "設定", en: "Setup", "zh-cn": "设置", ar: "إعداد" })}
+            </a>
+          </li>
 
-      <li>
-        <a
-          href={getRelativeLocaleUrl(locale, "/page")}
-          class={isActive("/page") ? "active" : null}
-        >
-          {
-            t({
-              ja: "ページの追加",
-              en: "Add Page",
-              "zh-cn": "添加页面",
-              ar: "إضافة صفحة",
-            })
-          }
-        </a>
-      </li>
+          <li>
+            <a
+              href={getRelativeLocaleUrl(locale, "/page")}
+              class={isActive("/page") ? "active" : null}
+            >
+              {t({
+                ja: "ページの追加",
+                en: "Add Page",
+                "zh-cn": "添加页面",
+                ar: "إضافة صفحة",
+              })}
+            </a>
+          </li>
 
-      <li>
-        <a
-          href={getRelativeLocaleUrl(locale, "/feature")}
-          class={isActive("/feature") ? "active" : null}
-        >
-          {
-            t({
-              ja: "その他の機能",
-              en: "Features",
-              "zh-cn": "特性",
-              ar: "الميزات",
-            })
-          }
-        </a>
-      </li>
+          <li>
+            <a
+              href={getRelativeLocaleUrl(locale, "/feature")}
+              class={isActive("/feature") ? "active" : null}
+            >
+              {t({
+                ja: "その他の機能",
+                en: "Features",
+                "zh-cn": "特性",
+                ar: "الميزات",
+              })}
+            </a>
+          </li>
 
-      <li class="en-only">
-        <a
-          href={getRelativeLocaleUrl(locale, "/monolingual")}
-          class={isActive("/monolingual") ? "active" : null}
-        >
-          Monolingual
-        </a>
-      </li>
+          <li class="en-only">
+            <a
+              href={getRelativeLocaleUrl(locale, "/monolingual")}
+              class={isActive("/monolingual") ? "active" : null}
+            >
+              Monolingual
+            </a>
+          </li>
 
-      <li>
-        <a
-          href={getRelativeLocaleUrl(locale, "/blog")}
-          class={isActive("/blog") ? "active" : null}
-        >
-          {t({ ja: "ブログ", en: "Blog", "zh-cn": "博客", ar: "مدونة" })}
-        </a>
-      </li>
+          <li>
+            <a
+              href={getRelativeLocaleUrl(locale, "/blog")}
+              class={isActive("/blog") ? "active" : null}
+            >
+              {t({ ja: "ブログ", en: "Blog", "zh-cn": "博客", ar: "مدونة" })}
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-      <li>
-        <a
-          href="https://github.com/psephopaiktes/astro-i18n-starter"
-          target="_blank"
-        >
-          GitHub
-          <span class="material-icons-sharp dir">open_in_new</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+      <!-- Language Selector -->
+      <div class="lang-select">
+        <LocaleSelect />
+      </div>
+    </div>
+  </div>
 </header>
 
 <style>
-  * {
-    flex-wrap: wrap;
-    justify-content: center;
+  .l-header {
+    background: var(--color-base);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-main) 10%, transparent);
+    padding: var(--sp-s) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
   }
 
-  header {
-    display: grid;
-    place-items: center;
-    gap: var(--sp-s);
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--sp-s);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-m);
   }
 
-  h1 {
-    margin-block-start: var(--sp-l);
-    margin-inline-start: -0.5em;
-    font-size: 40px;
-    font-family: var(--english-font);
-    font-weight: 900;
-    @media (width < 480px) {
-      font-size: 28px;
-    }
-
+  /* Logo styles */
+  .logo {
+    flex-shrink: 0;
+    
     a {
       display: flex;
       align-items: center;
+      gap: 0.5em;
+      font-weight: 400;
+      font-family: var(--english-font);
+      font-size: 1.2rem;
+      color: var(--color-logo);
     }
+
     img {
-      width: 6em;
-      position: relative;
-      inset: 0.1em;
+      width: 2em;
+      height: auto;
     }
   }
 
-  nav {
+  /* Navigation styles */
+  .nav-container {
     display: flex;
     align-items: center;
     gap: var(--sp-m);
+    flex: 1;
   }
-  ul {
-    display: flex;
-    gap: var(--sp-s);
-    margin-block-start: var(--sp-s);
 
-    .en-only {
-      position: relative;
-      &:not(:lang(en))::before {
-        content: "EN";
-        position: absolute;
-        inset: -0.4em -0.6em auto auto;
-        font-size: 0.8em;
-        font-weight: 900;
-        color: var(--color-main);
-        opacity: 0.6;
-      }
+  .main-nav {
+    flex: 1;
+    
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-sm);
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
     a {
-      font-size: 1.05rem;
-      display: block;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      padding-block: 0.2em;
-      padding-inline: 0.4em;
+      font-size: 1rem;
+      font-weight: 400;
+      padding: 0.5em 0.8em;
       border-radius: 4px;
-      &:hover,
-      &:active {
-        background-color: color-mix(
-          in srgb,
-          var(--color-theme) 5%,
-          transparent
-        );
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--color-theme) 5%, transparent);
       }
+
       &.active {
-        pointer-events: none;
         color: var(--color-theme);
-      }
-      .material-icons-sharp {
-        opacity: 0.6;
-        margin-inline-start: -0.2em;
-        font-size: 0.9em;
       }
     }
   }
+
+  /* Language selector styles */
+  .lang-select {
+    flex-shrink: 0;
+  }
+
+  /* Hamburger Menu Button */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+
+    .hamburger {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-main);
+      position: relative;
+      transition: background 0.2s;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--color-main);
+        transition: transform 0.2s;
+      }
+
+      &::before {
+        top: -6px;
+      }
+
+      &::after {
+        bottom: -6px;
+      }
+    }
+
+    &.active {
+      .hamburger {
+        background: transparent;
+
+        &::before {
+          transform: translateY(6px) rotate(45deg);
+        }
+
+        &::after {
+          transform: translateY(-6px) rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  /* RTL Support */
+  :dir(rtl) {
+    .logo a {
+      gap: 0.3em;
+    }
+    
+    .main-nav {
+      direction: rtl;
+    }
+  }
+
+  /* Responsive design */
+  @media (width < 768px) {
+    .header-container {
+      flex-wrap: wrap;
+      padding: var(--sp-s);
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav-container {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-base);
+      padding: var(--sp-s);
+      border-top: 1px solid color-mix(in srgb, var(--color-main) 10%, transparent);
+      flex-direction: column;
+      align-items: stretch;
+      
+      &.active {
+        display: flex;
+      }
+    }
+
+    .main-nav {
+      ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      a {
+        display: block;
+        padding: 1em;
+        border-radius: 0;
+        
+        &:hover {
+          background-color: color-mix(in srgb, var(--color-theme) 10%, transparent);
+        }
+      }
+    }
+
+    .lang-select {
+      margin-top: var(--sp-s);
+      text-align: center;
+    }
+
+    :dir(rtl) .header-container {
+      flex-direction: row-reverse;
+    }
+  }
 </style>
+
+<script>
+  // Hamburger menu functionality
+  const menuToggle = document.getElementById('menuToggle');
+  const navContainer = document.getElementById('navContainer');
+
+  if (menuToggle && navContainer) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navContainer.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navContainer.contains(e.target as Node) && !menuToggle.contains(e.target as Node)) {
+        menuToggle.classList.remove('active');
+        navContainer.classList.remove('active');
+      }
+    });
+
+    // Close menu when clicking on a link
+    navContainer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navContainer.classList.remove('active');
+      });
+    });
+  }
+</script>
